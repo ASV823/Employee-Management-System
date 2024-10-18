@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Employee } from '../model/class/Employee';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../model/interface/master';
+import { IProject } from '../model/interface/master';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,20 @@ updateEmp(obj: Employee): Observable<IApiResponse> {
 deleteEmpById(id: number): Observable<IApiResponse> {
   debugger;
   return this.http.delete<IApiResponse>(this.apiUrl + "DeleteEmployee/" +id);
+}
+saveProject(obj: Employee): Observable<IProject> {
+  debugger;
+  return this.http.post<IProject>(this.apiUrl + "CreateProject", obj);
+}
+updateProject(obj: IProject): Observable<IProject> {
+  debugger;
+  return this.http.put<IProject>(this.apiUrl + "UpdateProject/"+obj.projectId, obj);
+}
+
+getAllProjects(): Observable<IProject[]> {
+  return this.http.get<IProject[]>(this.apiUrl + "GetAllProjects");
+}
+getRppjectById(id: number): Observable<IProject> {
+  return this.http.get<IProject>(this.apiUrl + "/GetProject/"+id);
 }
 }
