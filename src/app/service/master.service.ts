@@ -4,6 +4,7 @@ import { Employee } from '../model/class/Employee';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../model/interface/master';
 import { IProject } from '../model/interface/master';
+import { IProjectEmployee } from '../model/interface/master';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +53,21 @@ getAllProjects(): Observable<IProject[]> {
 getRppjectById(id: number): Observable<IProject> {
   return this.http.get<IProject>(this.apiUrl + "/GetProject/"+id);
 }
+getProjectEmp(): Observable<IProjectEmployee[]> {
+  return this.http.get<IProjectEmployee[]>(this.apiUrl + "GetAllProjectEmployees");
+}
+
+saveProjectEmp(obj: IProjectEmployee): Observable<IProject> {
+  debugger;
+  return this.http.post<IProject>(this.apiUrl + "CreateProjectEmployee", obj);
+} 
+updateProjectEmp(obj: IProjectEmployee): Observable<IProjectEmployee> {
+  debugger;
+  return this.http.put<IProjectEmployee>(this.apiUrl + "UpdateProjectEmployee/"+obj.empProjectId, obj);
+}
+
+getDashbvaordData(): Observable<any> {
+  return this.http.get<any>(this.apiUrl + "GetDashboard");
+}
+
 }
